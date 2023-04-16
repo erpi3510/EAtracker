@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import "./style.css";
 import { AppRegistry, Pressable, ScrollView, View, Image, Text, Button, StyleSheet } from 'react-native'; 
-const myObj ={'item1':{'name':'Milch','color':'#FF3D00'},'item2':{'name':'Bananen','color':'#3D00FF'},'item3':{'name':'Button3','color':'#FFFF3D'},'item4':{'name':'Button4','color':'#FF3DFF'},'item5':{'name':'Button5','color':'#3DFF00'},'item6':{'name':'Button6','color':'#3D00FF'},'item7':{'name':'Button7','color':'#FF3DFF'},'item8':{'name':'Button8','color':'#3DFF00'}};
+const myObj ={'item1':{'name':'Milch','color':'#FF3D00'},'item2':{'name':'Bananen','color':'#3D00FF'},'item3':{'name':'Tomaten','color':'#FFFF3D'},'item4':{'name':'Button4','color':'#FF3DFF'},'item5':{'name':'Button5','color':'#3DFF00'},'item6':{'name':'Button6','color':'#3D00FF'},'item7':{'name':'Button7','color':'#FF3DFF'},'item8':{'name':'Button8','color':'#3DFF00'}};
 
 function Notif() {
   function click(){
