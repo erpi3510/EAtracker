@@ -1,17 +1,34 @@
 {
   "name": "ea-app",
   "version": "0.1.0",
+  "homepage": "https://erpi3510.github.io/EAtracker",
   "private": true,
   "dependencies": {
+    "@babel/preset-env": "^7.21.4",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "babel-plugin-macros": "^3.1.0",
+    "bootstrap": "^5.2.3",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.7.3",
     "react-dom": "^18.2.0",
+    "react-minimal-pie-chart": "^8.4.0",
+    "react-multicolor-circular-progress-bar": "^1.0.3",
+    "react-native-cli": "^2.0.1",
+    "react-native-multicolor-progress-bar": "^2.0.0",
+    "react-native-svg": "^13.9.0",
+    "react-native-web": "^0.19.4",
+    "react-qr-barcode-scanner": "^1.0.6",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -34,5 +51,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "gh-pages": "^5.0.0"
   }
 }
