@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/EAtracker/static/css/main.db73afcf.css",
-    "main.js": "/EAtracker/static/js/main.02febc1e.js",
+    "main.js": "/EAtracker/static/js/main.a35215d9.js",
     "static/js/787.ef1eadfe.chunk.js": "/EAtracker/static/js/787.ef1eadfe.chunk.js",
     "static/media/logo.svg": "/EAtracker/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/EAtracker/index.html",
     "main.db73afcf.css.map": "/EAtracker/static/css/main.db73afcf.css.map",
-    "main.02febc1e.js.map": "/EAtracker/static/js/main.02febc1e.js.map",
+    "main.a35215d9.js.map": "/EAtracker/static/js/main.a35215d9.js.map",
     "787.ef1eadfe.chunk.js.map": "/EAtracker/static/js/787.ef1eadfe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.db73afcf.css",
-    "static/js/main.02febc1e.js"
+    "static/js/main.a35215d9.js"
   ]
 }
