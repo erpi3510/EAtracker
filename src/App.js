@@ -1,9 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
- 
-
-
 import './App.css';
 import Dashboard from "./component/Dashboard.js";
 import Notifications from './component/Notifications.js';
@@ -14,7 +11,6 @@ import Header from './component/Header.js';
 
 function App() {
   return (
-    
     <div className="App"> 
       <Header />
       <Notifications />

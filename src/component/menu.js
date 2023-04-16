@@ -20,24 +20,19 @@ function Basic() {
    );
 }
 function Book() {
-    return (
-        
-          
+    return (       
           <Pressable 
                           onPress={click} >
                           <FontAwesomeIcon icon={icon({name: 'book'})} />
                        </Pressable>
-          
      );
   }
   function CirclePlus() {
     return (
-      
       <Pressable 
                       onPress={click} >
                       <FontAwesomeIcon icon={icon({name: 'circle-plus'})} />
                    </Pressable>
-     
      );
   }
 
@@ -49,11 +44,9 @@ export default function Menu() {
         <Col><div className='Titel'></div></Col>
       </Row>
       <Row className='rectangle4'>
-   
         <Col className='home'><Basic /></Col>
         <Col className='circlePlus'><CirclePlus /></Col>
         <Col className='book'><Book /></Col>
-       
       </Row>
     </Container>
   
