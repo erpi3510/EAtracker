@@ -49,7 +49,6 @@ function checkCookie(newData) {
     values = JSON.parse(wert);
     var endData = data +','+ values;
     setCookie("data", endData, 30);
-    console.log(endData+'  da');
   } else {
 
        setCookie("data", JSON.parse(wert), 30);
