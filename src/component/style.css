@@ -177,6 +177,9 @@
 .example-custom-input{
     background-color: blue;
 }
+.appPosition {
+    position: absolute;
+  }
 
 .buttonIcon {
     align-self: center;

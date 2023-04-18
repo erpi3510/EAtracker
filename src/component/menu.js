@@ -79,6 +79,7 @@ function Example() {
       var data=[];
       data.push(daten);
       checkCookie(JSON.stringify(daten)); 
+      handleClose2();
     };
 
   return (
@@ -106,8 +107,7 @@ function Example() {
 
       <Modal show={show2} onShow={handleClose} onHide={handleClose2} autoFocus={true} centered={true}>
       <div 
-    className="modal show"
-    style={{ display: 'block', position: 'initial' }}
+    style={{ display: 'block', position: 'relative' }}
     >
         <Modal.Body>
         <Form onSubmit={handleSubmit}>
@@ -120,8 +120,8 @@ function Example() {
         <Form.Label style={{display:'flex',justifyContent:'center'}}>Mindesthaltbarkeitsdatum</Form.Label>
         <Form.Control type="date" id="date" ref={dateRef} />
       </Form.Group>
-      <Button variant="primary" type="submit" style={{width:'100%', borderRadius:'10px'}}>
-        Submit
+      <Button variant="primary" placeholder="TT.mm.jjjj" type="submit" style={{width:'100%', borderRadius:'10px'}}>
+        Speichern
       </Button>
     </Form>
         </Modal.Body>
@@ -160,6 +160,9 @@ function Book() {
           <Modal.Title>Liste</Modal.Title>
         </Modal.Header>
         <Modal.Body>{getCookie("data")}</Modal.Body>
+        <Modal.Footer>
+        <Menu />
+        </Modal.Footer>
       </Modal>
 
                        </>
