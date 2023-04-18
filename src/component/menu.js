@@ -13,6 +13,9 @@ import Button from 'react-bootstrap/Button';
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import de from 'date-fns/locale/de';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import App from '../App.js';
+import ReactDOM from 'react-dom/client';
+import Header from './Header.js';
 registerLocale('de', de);
 
 function setCookie(cname,cvalue,exdays) {
@@ -136,9 +139,13 @@ function click(){
 }  
 
 function Basic() {
+
+  function handleClick() {
+    window.location.reload();
+  }
   return (
     <Pressable 
-                    onPress={click} >
+                    onPress={handleClick} >
                     <FontAwesomeIcon className='home' icon={icon({name: 'house'})} />
                  </Pressable>
 
@@ -156,24 +163,16 @@ function Book() {
                           <FontAwesomeIcon icon={icon({name: 'book'})} />
                        </Pressable>
                        <Modal show={show} onHide={handleClose} fullscreen={true}>
-        <Modal.Header closeButton>
-          <Modal.Title>Liste</Modal.Title>
+        <Modal.Header style={{padding:'0px',margin:'0px',borderBottom:'0px'}} closeButton>
+          <Modal.Title style={{width:'100%',borderBottom:'0px',display:'flex',justifyContent:'center'}}><Header /></Modal.Title>
         </Modal.Header>
         <Modal.Body>{getCookie("data")}</Modal.Body>
-        <Modal.Footer>
-        <Menu />
+        <Modal.Footer  style={{padding:'0px',width:'100%',margin:'0px',borderTop:'0',display:'flex',justifyContent:'center'}}>
+          <Menu />
         </Modal.Footer>
       </Modal>
 
                        </>
-     );
-  }
-  function CirclePlus() {
-    return (
-      <Pressable 
-                      onPress={click} >
-                      <FontAwesomeIcon icon={icon({name: 'circle-plus'})} />
-                   </Pressable>
      );
   }
 
@@ -181,9 +180,6 @@ export default function Menu() {
   return (
     
     <Container>
-         <Row>
-        <Col><div className='Titel'></div></Col>
-      </Row>
       <Row className='rectangle4'>
         <Col className='home'><Basic /></Col>
         <Col className='circlePlus'><Example /></Col>
