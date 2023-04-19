@@ -16,6 +16,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from '../App.js';
 import ReactDOM from 'react-dom/client';
 import Header from './Header.js';
+import Badge from 'react-bootstrap/Badge';
+import ListGroup from 'react-bootstrap/ListGroup';
 registerLocale('de', de);
 
 function setCookie(cname,cvalue,exdays) {
@@ -50,13 +52,13 @@ function checkCookie(newData) {
     var newValues = JSON.stringify(cookie_value);;
     data = JSON.parse(newValues);
     values = JSON.parse(wert);
-    var endData = data +','+ values;
+    //var endData = data +', '+ values;
+    var endData = [];
+endData.push(data);
+endData.push(values);
     setCookie("data", endData, 30);
   } else {
-
        setCookie("data", JSON.parse(wert), 30);
-      
-       console.log(JSON.parse(wert)+'jo1');
   }
 }
 
@@ -77,8 +79,7 @@ function Example() {
   
       const name = nameRef.current.value;
       const date = dateRef.current.value;
-      var daten={"name":name,
-      "date":date}; 
+      var daten={"name":name, "date":date}; 
       var data=[];
       data.push(daten);
       checkCookie(JSON.stringify(daten)); 
@@ -93,15 +94,14 @@ function Example() {
       </Pressable>
 
       <Modal show={show} onHide={handleClose} autoFocus={true} centered={true}>
-        <Modal.Body style={{display:'flex',justifyContent:'space-evenly',flexDirection:'column'}}>
-        <Pressable 
-        onPress={handleArtikel}>
-          <div className='rectangle1'>
+        <Modal.Body style={{display:'flex',justifyContent:'space-evenly',flexDirection:'column',backgroundColor:'#298ED7'}}>
+        <Pressable onPress={handleArtikel} style={{backgroundColor:'#298ED7'}}>
+          <div className='rectangle11'>
           Neuer Artikel
           </div>
       </Pressable>
       <Pressable onPress={handleShow}>
-                    <div className='rectangle1'>
+                    <div className='rectangle11'>
                     Scanner
           </div>
       </Pressable>
@@ -132,11 +132,7 @@ function Example() {
       </Modal>
     </>
   );
-}
-
-function click(){
-    alert('You clicked the button!'); 
-}  
+} 
 
 function Basic() {
 
@@ -151,6 +147,30 @@ function Basic() {
 
    );
 }
+
+function getData(){
+  var a = "["+getCookie("data")+"]";
+  var obj = eval ("(" + a + ")");
+  var values = []
+  for(var i in obj){
+values.push(
+      <ListGroup.Item
+        as="li"
+        className="d-flex justify-content-between align-items-start">
+        <div className="ms-2 me-auto">
+          <div className="fw-bold">{obj[i].name}</div>
+          {obj[i].date}
+        </div>
+        <Badge bg="primary" pill>
+          14
+        </Badge>
+      </ListGroup.Item>
+)
+}
+    return values;
+     
+}
+
 function Book() {
   const [show, setShow] = useState(false);
 
@@ -163,10 +183,15 @@ function Book() {
                           <FontAwesomeIcon icon={icon({name: 'book'})} />
                        </Pressable>
                        <Modal show={show} onHide={handleClose} fullscreen={true}>
-        <Modal.Header style={{padding:'0px',margin:'0px',borderBottom:'0px'}} closeButton>
+        <Modal.Header style={{padding:'0px',margin:'0px',borderBottom:'0px'}}>
           <Modal.Title style={{width:'100%',borderBottom:'0px',display:'flex',justifyContent:'center'}}><Header /></Modal.Title>
         </Modal.Header>
-        <Modal.Body>{getCookie("data")}</Modal.Body>
+        <Modal.Body>
+          <ListGroup as="ol" numbered>
+          {getData()}
+    </ListGroup>
+
+        </Modal.Body>
         <Modal.Footer  style={{padding:'0px',width:'100%',margin:'0px',borderTop:'0',display:'flex',justifyContent:'center'}}>
           <Menu />
         </Modal.Footer>

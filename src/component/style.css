@@ -39,6 +39,19 @@
     padding: 10;
 }
 
+.rectangle11 {
+    left: -19px;
+    top: 126px;
+    background: #281199;
+    height: 50px;
+    color: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .rectangle1 {
     left: -19px;
     top: 126px;
