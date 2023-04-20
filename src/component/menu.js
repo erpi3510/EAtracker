@@ -10,15 +10,14 @@ import Modal from 'react-bootstrap/Modal';
 import ModalFooter from 'react-bootstrap/ModalFooter';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { registerLocale, setDefaultLocale } from  "react-datepicker";
-import de from 'date-fns/locale/de';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from '../App.js';
 import ReactDOM from 'react-dom/client';
 import Header from './Header.js';
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
-registerLocale('de', de);
+import Save from './modal.js';
+
 
 function setCookie(cname,cvalue,exdays) {
   const d = new Date();
@@ -86,29 +85,31 @@ function Example() {
       handleClose2();
     };
 
-  return (
-    <>
-      <Pressable 
-        onPress={handleShow} >
-          <FontAwesomeIcon icon={icon({name: 'circle-plus'})} />
-      </Pressable>
+    function GetModalSave(){
+      return (
+        <> 
+    <Modal show={show} onHide={handleClose} autoFocus={true} centered={true}>
+            <Modal.Body style={{display:'flex',justifyContent:'space-evenly',flexDirection:'column',backgroundColor:'#298ED7'}}>
+            <Pressable onPress={handleArtikel} style={{backgroundColor:'#298ED7'}}>
+              <div className='rectangle11'>
+              Neuer Artikel
+              </div>
+          </Pressable>
+          <Pressable onPress={handleShow}>
+                        <div className='rectangle11'>
+                        Scanner
+              </div>
+          </Pressable>
+            </Modal.Body>
+          </Modal>
+        </>
+        );
+    }
 
-      <Modal show={show} onHide={handleClose} autoFocus={true} centered={true}>
-        <Modal.Body style={{display:'flex',justifyContent:'space-evenly',flexDirection:'column',backgroundColor:'#298ED7'}}>
-        <Pressable onPress={handleArtikel} style={{backgroundColor:'#298ED7'}}>
-          <div className='rectangle11'>
-          Neuer Artikel
-          </div>
-      </Pressable>
-      <Pressable onPress={handleShow}>
-                    <div className='rectangle11'>
-                    Scanner
-          </div>
-      </Pressable>
-        </Modal.Body>
-      </Modal>
-
-      <Modal show={show2} onShow={handleClose} onHide={handleClose2} autoFocus={true} centered={true}>
+    function GetModalDataSave(){
+      return (
+        <> 
+        <Modal show={show2} onShow={handleClose} onHide={handleClose2} autoFocus={true} centered={true}>
       <div 
     style={{ display: 'block', position: 'relative' }}
     >
@@ -130,6 +131,19 @@ function Example() {
         </Modal.Body>
     </div>
       </Modal>
+        </>
+        );
+    }
+
+  return (
+    <>
+      <Pressable 
+        onPress={handleShow} >
+          <FontAwesomeIcon icon={icon({name: 'circle-plus'})} />
+      </Pressable>
+      <GetModalSave />
+      <GetModalDataSave />
+
     </>
   );
 } 
@@ -148,34 +162,61 @@ function Basic() {
    );
 }
 
-function getData(){
-  var a = "["+getCookie("data")+"]";
-  var obj = eval ("(" + a + ")");
-  var values = []
-  for(var i in obj){
-values.push(
-      <ListGroup.Item
-        as="li"
-        className="d-flex justify-content-between align-items-start">
-        <div className="ms-2 me-auto">
-          <div className="fw-bold">{obj[i].name}</div>
-          {obj[i].date}
-        </div>
-        <Badge bg="primary" pill>
-          14
-        </Badge>
-      </ListGroup.Item>
-)
-}
-    return values;
-     
-}
+function click(values){
+  alert('object '+ values );
+  }
+
+
 
 function Book() {
+  var [mittel, setName] = useState("Values");
+  function getData(){
+
+    var a = "["+getCookie("data")+"]";
+    var obj = eval ("(" + a + ")");
+    var values = []
+    for(var i in obj){
+  values.push(
+        <ListGroup.Item
+          as="li"
+          className="d-flex justify-content-between align-items-start" action eventKey={i} onClick={handleArtikel} >
+          <div className="ms-2 me-auto" onClick={() => setName(obj[i].name)}>
+            <div className="fw-bold">{obj[i].name}</div>
+            {obj[i].date}
+          </div>
+          <Badge bg="primary" pill>
+            14
+          </Badge>
+        </ListGroup.Item>    
+  )
+  }
+      return values;
+       
+  }
   const [show, setShow] = useState(false);
+ 
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [show2, setShow2] = useState(false);
+  const handleArtikel = () => setShow2(true);
+  const handleClose2 = () => setShow2(false);
+  const nameRef = React.useRef();
+  const dateRef = React.useRef();
+
+
+  const handleSubmit = (event) => {
+      event.preventDefault();
+  
+      const name = nameRef.current.value;
+      const date = dateRef.current.value;
+      var daten={"name":name, "date":date}; 
+      var data=[];
+      data.push(daten);
+      checkCookie(JSON.stringify(daten)); 
+      handleClose2();
+    };
     return (    
       <>   
           <Pressable 
@@ -195,6 +236,29 @@ function Book() {
         <Modal.Footer  style={{padding:'0px',width:'100%',margin:'0px',borderTop:'0',display:'flex',justifyContent:'center'}}>
           <Menu />
         </Modal.Footer>
+      </Modal>
+
+      <Modal show={show2}  onHide={handleClose2} autoFocus={true} centered={true}>
+      <div 
+    style={{ display: 'block', position: 'relative' }}
+    >
+        <Modal.Body>
+        <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" >
+        <Form.Label style={{display:'flex',justifyContent:'center'}}>Name</Form.Label>
+        <Form.Control id="name" type="text" ref={nameRef} placeholder="Tomaten" value={mittel}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" >
+        <Form.Label style={{display:'flex',justifyContent:'center'}}>Mindesthaltbarkeitsdatum</Form.Label>
+        <Form.Control type="date" id="date" ref={dateRef} />
+      </Form.Group>
+      <Button variant="primary" placeholder="TT.mm.jjjj" type="submit" style={{width:'100%', borderRadius:'10px'}}>
+        Speichern
+      </Button>
+    </Form>
+        </Modal.Body>
+    </div>
       </Modal>
 
                        </>
