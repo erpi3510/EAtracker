@@ -11,13 +11,15 @@ import Header from './component/Header.js';
 
 function App() {
   return (
-    <div className="App"> 
+    <div className="App">  
+
       <Header />
       <Notifications />
       <Dashboard />
       <Ueberblick />
       <Neue />
       <Menu />
+      
     </div>
   );
 }
